@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>教务系统-注册</title>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="jumbotron">
+	  <div class="panel panel-default">
+	  <div class="panel-body">
+	    <form action="/register" method="post">
+	      <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">用户名</label>
+		    <input type="text" class="form-control" name='user_name' placeholder="用户名">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">密码</label>
+		    <input type="password" class="form-control" name='password' placeholder="密码">
+		  </div>
+		  <div>
+		  	{% for message in get_flashed_messages() %}
+		  	<span style="color: red">{{message}}</span>
+		  	{% endfor %}
+		  </div>
+		  <button type="submit" class="btn btn-primary">注册</button> 
+		  <a class="btn btn-primary" href="/login" role="button">去登录</a>
+		</form>
+	  </div>
+	</div>
+	</div>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+</body>
+</html>
