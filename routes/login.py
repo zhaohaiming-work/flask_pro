@@ -21,7 +21,7 @@ def login(**key):
                   # 设置cookie
                   token =create_auth_token(user.id).decode('utf-8')
                   # print(user.id,token)
-                  respose = make_response(redirect('/'))
+                  respose = make_response(redirect('/home'))
                   respose.set_cookie('_t', token)
                   return  respose
                 else:

@@ -1,0 +1,29 @@
+html,body{
+    height: 100%;
+    background-color: #efefef;
+}
+.layout-container{
+    width:100%;
+    display: flex;
+}
+.left-container{
+    width: 240px;
+    min-height: 500px;
+    background: #ccc;
+}
+.right-container{
+    flex: 1;
+    /* margin-left: 10px; */
+}
+.layout-header{
+    height: 45px;
+    background: antiquewhite;
+    padding: 0 20px;
+    text-align: right;
+}
+.layout-body{
+    margin-left: 10px;
+    background: #fff;
+    margin-right: 10px;
+    margin: 20px;
+}

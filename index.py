@@ -8,7 +8,7 @@ from flask import render_template, request, make_response
 from app import app
 from routes.login import login
 from routes.register import register
-
+from routes.home import home
 
 @app.route('/')
 def index_route():
@@ -24,6 +24,10 @@ def login_route():
 @app.route('/register', methods=['get', 'post'])
 def register_route():
     return register()
+    
+@app.route('/home', methods=['get', 'post'])
+def home_route():
+    return home()
 
 
 
