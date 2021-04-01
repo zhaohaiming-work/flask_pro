@@ -2,8 +2,8 @@ import flask
 
 from flask import render_template, request, flash
 
-from ORM.user import User
-from app import db
+from ORM.user import User,db
+
 def register(*key, **kw):
 
     if request.method == 'POST':
@@ -18,9 +18,14 @@ def register(*key, **kw):
             if name :
                 flash('该用户已经存在，请直接登录')
             else:
-                user = User(user_name=user_name,password=password)
-                db.session.add(user)
-                db.session.commit()
-                flash('注册成功，请登录')
+                try:
+                    user = User(user_name=user_name)
+                    # print(dir(user))
+                    user.set_password(password)
+                    db.session.add(user)
+                    db.session.commit()
+                    flash('注册成功，请登录')
+                except Exception as e:
+                    print(e)
 
     return render_template('register.html')
