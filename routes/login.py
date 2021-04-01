@@ -15,7 +15,7 @@ def login(**key):
             flash('请填完整信息')
         else:
             user = User.query.filter(User.user_name==user_name).first()
-            print(user)
+            # print(user)
             if user:
                 if user.check_password(password):
                   # 设置cookie

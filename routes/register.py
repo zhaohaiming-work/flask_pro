@@ -20,7 +20,6 @@ def register(*key, **kw):
             else:
                 try:
                     user = User(user_name=user_name)
-                    # print(dir(user))
                     user.set_password(password)
                     db.session.add(user)
                     db.session.commit()
