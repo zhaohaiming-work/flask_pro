@@ -26,10 +26,73 @@
                 <a  href="/login" class="btn btn-primary">退出</a>
             </div>
             <div class="layout-body">
-                内容部分
+              <div class="layout-body">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    学生管理
+                  </div>
+                  <div class="panel-body">
+                    <form action="/stu_manage/search" method="post">
+                      <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">学生名</label>
+                        <input type="text" name='stu_name' value="{{stu_name}}" class="form-control"  placeholder="学生名">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">班级</label>
+                        <select class="form-control" id='class_code' name='class_code'>
+                          <option value="">所有</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-primary">查询</button>
+                      <a href="#" class="btn btn-primary">新增</a>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <td>姓名</td>
+                    <td>性别</td>
+                    <td>年龄</td>
+                    <td>身高</td>
+                    <td>体重</td>
+                    <td>年级</td>
+                    <td>操作</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for stu in stu_list %}
+                  <tr>
+                    <td>{{stu.stu_name}}</td>
+                    <td>{{stu.gender}}</td>
+                    <td>{{stu.age}}</td>
+                    <td>{{stu.height}}</td>
+                    <td>{{stu.weight}}</td>
+                    <td>{{stu.class_code}}</td>
+                    <td>
+                      <a href="/stu_manage/del?id={{stu.id}}">删除</a>
+                      <a href="">编辑</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                
+              </table>
+
             </div>
         </div>
     </div>
+    <script>
+      var code = location.search.replace(/.*&code=(\d)/,'$1')
+      document.getElementById("class_code").options[code].selected=true
+    </script>
 </body>
 
 </html>

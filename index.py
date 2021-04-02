@@ -34,6 +34,14 @@ def class_manage_route():
 def stu_manage_route():
     return stu_manage.stu_manage()
 
+@app.route('/stu_manage/search', methods=['post'])
+def stu_manage_search_route():
+    return stu_manage.stu_manage_search()
+
+@app.route('/stu_manage/del')
+def stu_manage_del_route():
+    return stu_manage.stu_manage_del()
+
 
 
 
