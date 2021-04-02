@@ -6,10 +6,8 @@ sys.path.append(os.getcwd())
 import flask
 from flask import render_template, request, make_response
 from app import app
-from routes.login import login
-from routes.register import register
-from routes.home import home
-
+from routes import login,register,home,\
+    class_manage,stu_manage
 @app.route('/')
 def index_route():
     # flask.abort(500)
@@ -18,16 +16,23 @@ def index_route():
 
 @app.route('/login', methods=['post', 'get'])
 def login_route():
-    return login(path=88)
-
+    return login.login(path=88)
 
 @app.route('/register', methods=['get', 'post'])
 def register_route():
-    return register()
-    
+    return register.register()
+
 @app.route('/home', methods=['get', 'post'])
 def home_route():
-    return home()
+    return home.home()
+
+@app.route('/class_manage', methods=['get', 'post'])
+def class_manage_route():
+    return class_manage.class_manage()
+
+@app.route('/stu_manage', methods=['get', 'post'])
+def stu_manage_route():
+    return stu_manage.stu_manage()
 
 
 

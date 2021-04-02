@@ -2,7 +2,7 @@ import flask
 from flask import render_template, request, make_response,flash,redirect
 
 from .common_data import menu
-def home(**key):
+def class_manage(**key):
     # print(request.method)
     
-    return render_template('home.html',menu=menu)
+    return render_template('class_manage.html',menu=menu)
