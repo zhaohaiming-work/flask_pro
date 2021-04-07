@@ -53,11 +53,11 @@ def stu_manage_del(**key):
 
 @app.route('/stu_manage_handle/<type>',methods=['post','get'])
 def stu_manage_handle(type):
-    tmpl = render_template('stu_manage_handle.html',menu=menu,type=type)
+
     # flash('欢迎使用')
     try:
       if request.method=='GET':
-       return tmpl
+       return render_template('stu_manage_handle.html',menu=menu,type=type)
       # 判断是不是新增
       if type=='add':
         req = request.form
@@ -65,19 +65,20 @@ def stu_manage_handle(type):
         class_code = int(req.get('class_code'))
         if stu_name=='':
           flash('姓名不为空')
-          return tmpl
+          return render_template('stu_manage_handle.html',menu=menu,type=type)
         # 查询看是否有重名的
         stu = Stu_manage.query.filter(Stu_manage.stu_name==stu_name,\
           Stu_manage.class_code==class_code).first()
 
         if stu:
           flash('学生已经存在')
-          return tmpl
+          return render_template('stu_manage_handle.html',menu=menu,type=type)
         else:
           # 如果没有重名则添加数据库
           stu_modle = Stu_manage(stu_name=req.get('stu_name'),\
             class_code=req.get('class_code'),\
             gender=req.get('gender'),\
+            age= int(req.get('age')) if req.get('age') else None,\
             height= int(req.get('height')) if req.get('height') else None,\
             weight= int(req.get('weight')) if req.get('weight') else None
             )
@@ -88,5 +89,5 @@ def stu_manage_handle(type):
         pass
     except Exception as e:
       print(e)
-      return tmpl
+      return render_template('stu_manage_handle.html',menu=menu,type=type)
 

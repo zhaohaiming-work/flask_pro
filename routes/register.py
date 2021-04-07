@@ -5,7 +5,6 @@ from flask import render_template, request, flash
 from ORM.user import User,db
 
 def register(*key, **kw):
-
     if request.method == 'POST':
         data = dict(request.form)
         # print(User)
