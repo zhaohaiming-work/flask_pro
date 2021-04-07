@@ -1,6 +1,7 @@
 import flask
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from flask import request,make_response
 from .token_auth import verify_auth_token
 from flask import flash,redirect
@@ -10,6 +11,9 @@ from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt()
 app = flask.Flask(__name__, template_folder='../templates',
                   static_folder='../static')
+CORS(app, supports_credentials=True)
+
+
 bcrypt.init_app(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:zhm1072950174@127.0.0.1:3306/teaching'

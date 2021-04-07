@@ -53,7 +53,7 @@ def stu_manage_del(**key):
 
 @app.route('/stu_manage_handle/<type>',methods=['post','get'])
 def stu_manage_handle(type):
-
+    print(request.args.get('id'))
     # flash('欢迎使用')
     try:
       if request.method=='GET':
@@ -75,7 +75,8 @@ def stu_manage_handle(type):
           return render_template('stu_manage_handle.html',menu=menu,type=type)
         else:
           # 如果没有重名则添加数据库
-          stu_modle = Stu_manage(stu_name=req.get('stu_name'),\
+          stu_modle = Stu_manage(
+            stu_name=req.get('stu_name'),\
             class_code=req.get('class_code'),\
             gender=req.get('gender'),\
             age= int(req.get('age')) if req.get('age') else None,\
@@ -86,7 +87,10 @@ def stu_manage_handle(type):
           db.session.commit()
           return redirect('/stu_manage')
       else:
-        pass
+        req = request.form
+
+        print(request.args.get('id'))
+        return render_template('stu_manage_handle.html',menu=menu,type=type)
     except Exception as e:
       print(e)
       return render_template('stu_manage_handle.html',menu=menu,type=type)
