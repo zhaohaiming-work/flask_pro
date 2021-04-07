@@ -7,7 +7,7 @@ import flask
 from flask import render_template, request, make_response
 from app import app
 from routes import login,register,home,\
-    class_manage,stu_manage
+    class_manage,stu_manage,stu_manage
 @app.route('/')
 def index_route():
     # flask.abort(500)
@@ -29,21 +29,6 @@ def home_route():
 @app.route('/class_manage', methods=['get', 'post'])
 def class_manage_route():
     return class_manage.class_manage()
-
-@app.route('/stu_manage', methods=['get', 'post'])
-def stu_manage_route():
-    return stu_manage.stu_manage()
-
-@app.route('/stu_manage/search', methods=['post'])
-def stu_manage_search_route():
-    return stu_manage.stu_manage_search()
-
-@app.route('/stu_manage/del')
-def stu_manage_del_route():
-    return stu_manage.stu_manage_del()
-
-
-
 
 def main():
     app.run(port=8089, debug=True)

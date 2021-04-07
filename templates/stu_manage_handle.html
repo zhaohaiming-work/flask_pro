@@ -32,16 +32,22 @@
               学生管理
             </div>
             <div class="panel-body">
-              <form action="/stu_manage/search" method="post">
+              <form action="/stu_manage_handle/{{'add' if type=='add' else 'edit'}}" method="post">
                 <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
                 <div class="form-group">
                   <label for="exampleInputEmail1">学生名</label>
                   <input type="text" name='stu_name' value="{{stu_name}}" class="form-control" placeholder="学生名">
                 </div>
                 <div class="form-group">
+                  <label for="exampleInputEmail1">性别</label>
+                  <select class="form-control" id='gender' name='gender'>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="exampleInputPassword1">班级</label>
                   <select class="form-control" id='class_code' name='class_code'>
-                    <option value="">所有</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -49,43 +55,29 @@
                     <option value="5">5</option>
                   </select>
                 </div>
-                <button type="submit" class="btn btn-primary">查询</button>
-                <a href="/stu_manage_handle/add" class="btn btn-primary">新增</a>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">身高</label>
+                  <input type="number" name='height' value="{{stu_name}}" class="form-control" placeholder="学生名">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">年龄</label>
+                  <input type="number" name='age' value="{{stu_name}}" class="form-control" placeholder="学生名">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">体重</label>
+                  <input type="number" name='weight' value="{{stu_name}}" class="form-control" placeholder="学生名">
+                </div>
+                <div>
+                  {% for message in get_flashed_messages() %}
+                  <span style="color: red">{{message}}</span>
+                  {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary">{{ "新增" if type=="add" else "编辑"}}</button>
               </form>
             </div>
           </div>
         </div>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <td>姓名</td>
-              <td>性别</td>
-              <td>年龄</td>
-              <td>身高</td>
-              <td>体重</td>
-              <td>年级</td>
-              <td>操作</td>
-            </tr>
-          </thead>
-          <tbody>
-            {% for stu in stu_list %}
-            <tr>
-              <td>{{stu.stu_name}}</td>
-              <td>{{stu.gender}}</td>
-              <td>{{stu.age}}</td>
-              <td>{{stu.height}}</td>
-              <td>{{stu.weight}}</td>
-              <td>{{stu.class_code}}</td>
-              <td>
-                <a href="/stu_manage/del?id={{stu.id}}">删除</a>
-                <a href="">编辑</a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-
-        </table>
-
       </div>
     </div>
   </div>
